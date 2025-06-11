@@ -12,8 +12,6 @@ const App = () => {
   const [selectedPatient, setSelectedPatient] = useState(null);
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
-`${backendUrl}/api/patient`
-
   useEffect(() => {
     //const socket = io("http://localhost:5000");
     const socket = io(`${backendUrl}`);
