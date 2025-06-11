@@ -14,8 +14,13 @@ const App = () => {
 
   useEffect(() => {
     //const socket = io("http://localhost:5000");
-    //const socket = io(`${backendUrl}`, {transports: ['websocket']});
-    const socket = io(`${backendUrl}`);
+    const socket = io(`${backendUrl}`, {transports: ["websocket"], withCredentials: true});
+    //const socket = io(`${backendUrl}`);
+    
+    socket.on("connect", () => {
+      console.log("Connected to socket");
+    });
+  
     socket.on("vitals_update", (data) => {
       console.log("Realtime data received", data);
       setPatients((prev) =>
@@ -39,11 +44,11 @@ const App = () => {
 
     fetchPatients();
     
-    //return () => socket.disconnect();
+    return () => socket.disconnect();
     
-    return () => {
-      socket.off("vitals_update");
-    };    
+    //return () => {
+    //  socket.off("vitals_update");
+    //};    
     
   }, []);
 
