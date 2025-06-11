@@ -10,9 +10,13 @@ const App = () => {
   const [chatHistory, setChatHistory] = useState({});
   const [chatMode, setChatMode] = useState("patient"); // "patient" or "general"
   const [selectedPatient, setSelectedPatient] = useState(null);
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
+`${backendUrl}/api/patient`
 
   useEffect(() => {
-    const socket = io("http://localhost:5000");
+    //const socket = io("http://localhost:5000");
+    const socket = io(`${backendUrl}`);
     socket.on("vitals_update", (data) => {
       setPatients((prev) =>
         prev.map((p) => (p.id === data.id ? { ...p, vitals: data.vitals, risk: data.risk } : p))
@@ -21,7 +25,8 @@ const App = () => {
     
     const fetchPatients = async () => {
       try {
-        const response = await fetch("http://localhost:5000/patients");
+        //const response = await fetch("http://localhost:5000/patients");
+        const response = await fetch(`${backendUrl}/patients`);
         const data = await response.json();
         setPatients(data);
         if (data.length > 0) {
