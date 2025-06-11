@@ -16,6 +16,7 @@ const App = () => {
     //const socket = io("http://localhost:5000");
     const socket = io(`${backendUrl}`);
     socket.on("vitals_update", (data) => {
+      console.log("Realtime data received", data);
       setPatients((prev) =>
         prev.map((p) => (p.id === data.id ? { ...p, vitals: data.vitals, risk: data.risk } : p))
       );
