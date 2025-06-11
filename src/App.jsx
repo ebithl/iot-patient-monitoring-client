@@ -16,7 +16,7 @@ const App = () => {
     //const socket = io("http://localhost:5000");
     //const socket = io(`${backendUrl}`, {transports: ["websocket"], withCredentials: true});
     //const socket = io(`${backendUrl}`, {transports: ["websocket", "polling"], reconnectionAttempts: 5, reconnectionDelay: 2000});
-    const socket = io(`${backendUrl}`, {reconnectionAttempts: 5, reconnectionDelay: 2000});
+    const socket = io(`${backendUrl}`, {transports: ["polling"], reconnectionAttempts: 5, reconnectionDelay: 2000});
 
     //const socket = io(`${backendUrl}`);
     
