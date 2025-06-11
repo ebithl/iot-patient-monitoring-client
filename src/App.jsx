@@ -14,7 +14,8 @@ const App = () => {
 
   useEffect(() => {
     //const socket = io("http://localhost:5000");
-    const socket = io(`${backendUrl}`, {transports: ['websocket']});
+    //const socket = io(`${backendUrl}`, {transports: ['websocket']});
+    const socket = io(`${backendUrl}`);
     socket.on("vitals_update", (data) => {
       console.log("Realtime data received", data);
       setPatients((prev) =>
