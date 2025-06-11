@@ -79,7 +79,8 @@ const sendMessage = async (message) => {
 
   try {
     const selectedPatient = patients.find((p) => p.id === selectedPatientId);
-    const response = await fetch("http://localhost:5000/cdsa", {
+    //const response = await fetch("http://localhost:5000/cdsa", {
+    const response = await fetch(`${backendUrl}/cdsa`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
